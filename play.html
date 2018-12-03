@@ -83,12 +83,12 @@ if (keys["37"]) {yrot+=1} // Left
 if (keys["39"]) {yrot-=1} // Right
 // Movement
 if (keys["87"]) { // Forward
-pz += 1*Math.cos(yrot*Math.PI/180);
-px += -1*Math.sin(yrot*Math.PI/180);
+pz += 2*Math.cos(yrot*Math.PI/180);
+px += -2*Math.sin(yrot*Math.PI/180);
 }
 if (keys["83"]) { // Forward
-pz += -1*Math.cos(yrot*(Math.PI/180));
-px += 1*Math.sin(yrot*Math.PI/180);
+pz += -2*Math.cos(yrot*(Math.PI/180));
+px += 2*Math.sin(yrot*Math.PI/180);
 }
 }
 
