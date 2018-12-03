@@ -26,6 +26,7 @@
   var py = 0;
   var pz = 0;
   var fov = 1.5;
+  var yvel = 0;
   // 3D Data
   var nodesX = [-100,100,100,-100,-100,100,100,-100];
   var nodesY = [100,100,-100,-100,100,100,-100,-100];
@@ -101,6 +102,14 @@
     if (keys["68"]) { // Move Right
       pz += -2*Math.cos((yrot+90)*(Math.PI/180));
       px += 2*Math.sin((yrot+90)*Math.PI/180);
+    }
+    if (keys["32"]) { // Jump
+      yvel = 12;
+    }
+    py+=yvel;
+    py-=1;
+    if (py < 0) {
+      py=0
     }
   }
 
