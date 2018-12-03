@@ -65,9 +65,9 @@
 	}
 
 	function gotoxyz(x,y,z) {
-    x1 = x;
-    y1 = y;
-    z1 = z+500;
+    x1 = x-px;
+    y1 = y-py;
+    z1 = (z+500)-pz;
     pointto(x1,z1); // Y rotation
     x1 = dis*Math.sin(dir + (yrot)*Math.PI/180);
     z1 = dis*Math.cos(dir + (yrot)*Math.PI/180);
@@ -84,6 +84,15 @@
 		if(keys["40"]) {xrot-=1} // Down
 		if(keys["37"]) {yrot+=1} // Left
 		if(keys["39"]) {yrot-=1} // Right
+    // Movement
+    if(keys["87"]) { // Forward
+      px+=2*sin((xrot)*Math.PI/180);
+      pz+=2*sin((xrot)*Math.PI/180);
+    }
+    if(keys["83"]) { // Forward
+      px-=2*sin((xrot)*Math.PI/180);
+      pz-=2*sin((xrot)*Math.PI/180);
+    }
 	}
 
 	function step() {
