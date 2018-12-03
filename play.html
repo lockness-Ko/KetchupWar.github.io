@@ -56,11 +56,12 @@
         ctx.stroke();
       }
       if (edges[i][2] == 2) {
-        
         gotoxyz(nodesX[edges[i][0]],nodesY[edges[i][0]],nodesZ[edges[i][0]]);
         perspective(x1,y1,z1);
-        ctx.rect(x1,y1,10,50);
-        ctx.fill()  
+        if (z1>0) {
+          var img=document.getElementById("tree");
+          ctx.drawImage(img,x1,y1);
+        }
       }
     }
   }
@@ -132,5 +133,6 @@
   window.requestAnimationFrame(step);
 
 </script>
+  <img id="tree" src="https://b.kisscc0.com/20180813/qxw/kisscc0-tree-pixel-art-bit-game-computer-icons-pixel-tree-light-green-5b71381b06b5e2.8621558615341465870275.png">
 </body>
 </html>
