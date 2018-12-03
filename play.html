@@ -3,105 +3,102 @@
 <body>
 <canvas id="myCanvas"></canvas>
 <script>
+var c=document.getElementById("myCanvas");
+c.width  = window.innerWidth;
+c.height = window.innerHeight;
+var ctx=c.getContext("2d");
 
+// Keypresses
+var keys = {};
+window.onkeyup = function(e) { keys[e.keyCode] = false; }
+window.onkeydown = function(e) { keys[e.keyCode] = true; }
 
-	var c=document.getElementById("myCanvas");
-	c.width  = window.innerWidth;
-	c.height = window.innerHeight;
-	var ctx=c.getContext("2d");
+// Initiate standard variables
+var dir;
+var dis;
+var xrot = 0;
+var yrot = 0;
+var zrot = 0;
+var x1;
+var y1;
+var z1;
+var px = 0;
+var py = 0;
+var pz = 0;
+var fov = 1.5;
+// 3D Data
+var nodesX = [-100,100,100,-100,-100,100,100,-100];
+var nodesY = [100,100,-100,-100,100,100,-100,-100];
+var nodesZ = [100,100,100,100,-100,-100,-100,-100];
+var edges = [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
 
-	// Keypresses
-	var keys = {};
-	window.onkeyup = function(e) { keys[e.keyCode] = false; }
-	window.onkeydown = function(e) { keys[e.keyCode] = true; }
+function render() {
+ctx.beginPath();
+ctx.moveTo(0,0);
+ctx.lineTo(100,100);
+ctx.stroke();
+ctx.clearRect(0, 0, c.width, c.height);
+for (i=0;i<edges.length;i++) {
+// Don't draw it if its behind the player (ADD THAT)
+ctx.beginPath();
+gotoxyz(nodesX[edges[i][0]],nodesY[edges[i][0]],nodesZ[edges[i][0]]);
+perspective(x1,y1,z1);
+ctx.moveTo(x1,y1);
+gotoxyz(nodesX[edges[i][1]],nodesY[edges[i][1]],nodesZ[edges[i][1]]);
+perspective(x1,y1,z1);
+ctx.lineTo(x1,y1);
+ctx.stroke();
+}
+}
 
-	// Initiate standard variables
-	var dir;
-	var dis;
-	var xrot = 0;
-	var yrot = 0;
-	var zrot = 0;
-	var x1;
-	var y1;
-	var z1;
-	var px = 0;
-	var py = 0;
-	var pz = 0;
-	var fov = 1.5;
+function pointto(x,y) {
+dir = Math.atan2(x,y);
+dis = Math.sqrt(x*x+y*y);
+}
 
-	// 3D Data
-	var nodesX = [-100,100,100,-100,-100,100,100,-100];
-	var nodesY = [100,100,-100,-100,100,100,-100,-100];
-	var nodesZ = [100,100,100,100,-100,-100,-100,-100];
-	var edges = [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
+function perspective(x,y,z) {
+x1 = (200*(x/(z/fov)))+window.innerWidth/2;
+y1 = (200*(y/(z/fov)))+window.innerHeight/2;
+}
 
-	function render() {
-  	ctx.beginPath();
-    ctx.moveTo(0,0);
-    ctx.lineTo(100,100);
-    ctx.stroke();
-    ctx.clearRect(0, 0, c.width, c.height);
-    for (i=0;i<edges.length;i++) {
-      // Don't draw it if its behind the player (ADD THAT)
-    	ctx.beginPath();
-      gotoxyz(nodesX[edges[i][0]],nodesY[edges[i][0]],nodesZ[edges[i][0]]);
-      perspective(x1,y1,z1);
-      ctx.moveTo(x1,y1);
-      gotoxyz(nodesX[edges[i][1]],nodesY[edges[i][1]],nodesZ[edges[i][1]]);
-      perspective(x1,y1,z1);
-      ctx.lineTo(x1,y1);
-      ctx.stroke();
-    }
-	}
+function gotoxyz(x,y,z) {
+x1 = x-px;
+y1 = y-py;
+z1 = (z+500)-pz;
+pointto(x1,z1); // Y rotation
+x1 = dis*Math.sin(dir + (yrot)*Math.PI/180);
+z1 = dis*Math.cos(dir + (yrot)*Math.PI/180);
+pointto(y1,z1); // X Rotation
+y1 = dis*Math.sin(dir + (xrot)*Math.PI/180);
+z1 = dis*Math.cos(dir + (xrot)*Math.PI/180);
+pointto(x1,y1); // Z rotation
+x1 = dis*Math.sin(dir + (zrot)*Math.PI/180);
+y1 = dis*Math.cos(dir + (zrot)*Math.PI/180);
+}
 
-	function pointto(x,y) {
-    dir = Math.atan2(x,y);
-    dis = Math.sqrt(x*x+y*y);
-	}
+function control() {
+if (keys["38"]) {xrot+=1} // Up
+if (keys["40"]) {xrot-=1} // Down
+if (keys["37"]) {yrot+=1} // Left
+if (keys["39"]) {yrot-=1} // Right
+// Movement
+if (keys["87"]) { // Forward
+px+=2*sin((xrot)*Math.PI/180);
+pz+=2*sin((xrot)*Math.PI/180);
+}
+if (keys["83"]) { // Forward
+px-=2*sin((xrot)*Math.PI/180);
+pz-=2*sin((xrot)*Math.PI/180);
+}
+}
 
-	function perspective(x,y,z) {
-    x1 = (200*(x/(z/fov)))+window.innerWidth/2;
-    y1 = (200*(y/(z/fov)))+window.innerHeight/2;
-	}
+function step() {
+render();
+control();
+window.requestAnimationFrame(step);
+}
 
-	function gotoxyz(x,y,z) {
-    x1 = x-px;
-    y1 = y-py;
-    z1 = (z+500)-pz;
-    pointto(x1,z1); // Y rotation
-    x1 = dis*Math.sin(dir + (yrot)*Math.PI/180);
-    z1 = dis*Math.cos(dir + (yrot)*Math.PI/180);
-    pointto(y1,z1); // X Rotation
-    y1 = dis*Math.sin(dir + (xrot)*Math.PI/180);
-    z1 = dis*Math.cos(dir + (xrot)*Math.PI/180);
-    pointto(x1,y1); // Z rotation
-    x1 = dis*Math.sin(dir + (zrot)*Math.PI/180);
-    y1 = dis*Math.cos(dir + (zrot)*Math.PI/180);
-	}
-	
-	function control() {
-		if (keys["38"]) {xrot+=1} // Up
-		if (keys["40"]) {xrot-=1} // Down
-		if (keys["37"]) {yrot+=1} // Left
-		if (keys["39"]) {yrot-=1} // Right
-    // Movement
-    if (keys["87"]) { // Forward
-      px+=2*sin((xrot)*Math.PI/180);
-      pz+=2*sin((xrot)*Math.PI/180);
-    }
-    if (keys["83"]) { // Forward
-      px-=2*sin((xrot)*Math.PI/180);
-      pz-=2*sin((xrot)*Math.PI/180);
-    }
-	}
-
-	function step() {
-		render();
-		control();
-    window.requestAnimationFrame(step);
-	}
-
-  window.requestAnimationFrame(step);
+window.requestAnimationFrame(step);
 
 </script>
 </body>
