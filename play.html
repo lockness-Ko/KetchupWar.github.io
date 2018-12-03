@@ -123,6 +123,8 @@
   }
 
   function step() {
+    var img=document.getElementById("tree");
+    ctx.drawImage(img,0,0)
     render();
     control();
     window.requestAnimationFrame(step);
