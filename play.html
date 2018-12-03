@@ -107,9 +107,10 @@
       yvel = 12;
     }
     py+=yvel;
-    py-=1;
+    yvel-=1;
     if (py < 0) {
-      py=0
+      py=0;
+      yvel=0;
     }
   }
 
