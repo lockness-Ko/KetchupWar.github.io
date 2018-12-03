@@ -24,9 +24,9 @@
 	var x1;
 	var y1;
 	var z1;
-	var px;
-	var py;
-	var pz;
+	var px = 0;
+	var py = 0;
+	var pz = 0;
 	var fov = 1.5;
 
 	// 3D Data
@@ -80,16 +80,16 @@
 	}
 	
 	function control() {
-		if(keys["38"]) {xrot+=1} // Up
-		if(keys["40"]) {xrot-=1} // Down
-		if(keys["37"]) {yrot+=1} // Left
-		if(keys["39"]) {yrot-=1} // Right
+		if (keys["38"]) {xrot+=1} // Up
+		if (keys["40"]) {xrot-=1} // Down
+		if (keys["37"]) {yrot+=1} // Left
+		if (keys["39"]) {yrot-=1} // Right
     // Movement
-    if(keys["87"]) { // Forward
+    if (keys["87"]) { // Forward
       px+=2*sin((xrot)*Math.PI/180);
       pz+=2*sin((xrot)*Math.PI/180);
     }
-    if(keys["83"]) { // Forward
+    if (keys["83"]) { // Forward
       px-=2*sin((xrot)*Math.PI/180);
       pz-=2*sin((xrot)*Math.PI/180);
     }
