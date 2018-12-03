@@ -68,7 +68,7 @@
 
   function gotoxyz(x,y,z) {
     x1 = x-px;
-    y1 = y-py;
+    y1 = y+py;
     z1 = (z+500)-pz;
     pointto(x1,z1); // Y rotation
     x1 = dis*Math.sin(dir + (yrot)*Math.PI/180);
