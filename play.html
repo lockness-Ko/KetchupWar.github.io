@@ -94,6 +94,14 @@
       pz += -2*Math.cos(yrot*(Math.PI/180));
       px += 2*Math.sin(yrot*Math.PI/180);
     }
+    if (keys["65"]) { // Move Left
+      pz += -2*Math.cos((yrot-90)*(Math.PI/180));
+      px += 2*Math.sin((yrot-90)*Math.PI/180);
+    }
+    if (keys["68"]) { // Move Right
+      pz += -2*Math.cos((yrot+90)*(Math.PI/180));
+      px += 2*Math.sin((yrot+90)*Math.PI/180);
+    }
   }
 
   function step() {
