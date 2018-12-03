@@ -68,14 +68,14 @@
     y1 = y;
     z1 = z+500;
     pointto(x1,z1); // Y rotation
-    x1 = dis*Math.sin(dir + (yrot)*180/Math.PI);
-    z1 = dis*Math.cos(dir + (yrot)*180/Math.PI);
+    x1 = dis*Math.sin(dir + (yrot)*Math.PI/180);
+    z1 = dis*Math.cos(dir + (yrot)*Math.PI/180);
     pointto(y1,z1); // X Rotation
-    y1 = dis*Math.sin(dir + (xrot)*180/Math.PI);
-    z1 = dis*Math.cos(dir + (xrot)*180/Math.PI);
+    y1 = dis*Math.sin(dir + (xrot)*Math.PI/180);
+    z1 = dis*Math.cos(dir + (xrot)*Math.PI/180);
     pointto(x1,y1); // Z rotation
-    x1 = dis*Math.sin(dir + (zrot)*180/Math.PI);
-    y1 = dis*Math.cos(dir + (zrot)*180/Math.PI);
+    x1 = dis*Math.sin(dir + (zrot)*Math.PI/180);
+    y1 = dis*Math.cos(dir + (zrot)*Math.PI/180);
 	}
 	
 	function control() {
