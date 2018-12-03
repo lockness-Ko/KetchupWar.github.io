@@ -60,7 +60,7 @@
         perspective(x1,y1,z1);
         if (z1>0) {
           var img=document.getElementById("tree");
-          ctx.drawImage(img,x1,y1);
+          ctx.drawImage(img,x1-25,y1-25,50,50);
         }
       }
     }
@@ -133,6 +133,6 @@
   window.requestAnimationFrame(step);
 
 </script>
-  <img id="tree" src="https://b.kisscc0.com/20180813/qxw/kisscc0-tree-pixel-art-bit-game-computer-icons-pixel-tree-light-green-5b71381b06b5e2.8621558615341465870275.png">
+  <img id="tree" style="display:none;" src="https://b.kisscc0.com/20180813/qxw/kisscc0-tree-pixel-art-bit-game-computer-icons-pixel-tree-light-green-5b71381b06b5e2.8621558615341465870275.png">
 </body>
 </html>
