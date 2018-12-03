@@ -56,10 +56,11 @@
         ctx.stroke();
       }
       else {
-        var img=document.getElementById("tree");
+        
         gotoxyz(nodesX[edges[i][0]],nodesY[edges[i][0]],nodesZ[edges[i][0]]);
         perspective(x1,y1,z1);
-        ctx.drawImage(img,0,0);
+        ctx.rect(x1,y1,10,50);
+        ctx.fill()  
       }
     }
   }
@@ -123,8 +124,6 @@
   }
 
   function step() {
-    
-    ctx.drawImage(img,0,0)
     render();
     control();
     window.requestAnimationFrame(step);
@@ -133,9 +132,5 @@
   window.requestAnimationFrame(step);
 
 </script>
-  
-  <div id="assets">
-    <img id="tree" onload="var img=document.getElementById("tree");" src="https://b.kisscc0.com/20180813/qxw/kisscc0-tree-pixel-art-bit-game-computer-icons-pixel-tree-light-green-5b71381b06b5e2.8621558615341465870275.png">
-  </div>
 </body>
 </html>
