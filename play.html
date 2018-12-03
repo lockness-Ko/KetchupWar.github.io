@@ -79,10 +79,10 @@
 	}
 	
 	function control() {
-		if(keys["38"]) {yrot+=0.01} // Up
-		if(keys["40"]) {yrot-=0.01} // Down
-		if(keys["37"]) {xrot+=0.01} // Left
-		if(keys["39"]) {xrot-=0.01} // Right
+		if(keys["38"]) {xrot+=0.01} // Up
+		if(keys["40"]) {xrot-=0.01} // Down
+		if(keys["37"]) {yrot+=0.01} // Left
+		if(keys["39"]) {yrot-=0.01} // Right
 	}
 
 	function step() {
@@ -91,7 +91,7 @@
     window.requestAnimationFrame(step);
 	}
 
-window.requestAnimationFrame(step);
+  window.requestAnimationFrame(step);
 
 </script>
 </body>
