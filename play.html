@@ -80,7 +80,7 @@
       if (z1>0) {
         var img=document.getElementById("tree");
         var isize = (200*(210/(z1/fov)))
-        ctx.drawImage(img,x1-isize/2,y1-isize/2,isize,isize);
+        ctx.drawImage(img,x1-isize/2,y1-isize/2,isize,isize*Math.cos(dir));
       }
     }
   }
