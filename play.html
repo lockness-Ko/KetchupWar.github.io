@@ -91,8 +91,11 @@
         pointto(y1,z1); // X Rotation
         y1 = dis*Math.sin(dir + (xrot)*Math.PI/180);
         z1 = dis*Math.cos(dir + (xrot)*Math.PI/180);
+        var angle=dir;
         // Get Angle
-        ctx.drawImage(img,x1-isize/2,(y1-isize/2),isize,isize*Math.cos(dir));
+        gotoxyz(nodesX[edges[i][0]],nodesY[edges[i][0]],nodesZ[edges[i][0]]);
+        perspective(x1,y1,z1);
+        ctx.drawImage(img,x1-isize/2,(y1-isize/2),isize,isize*Math.cos(angle));
       }
     }
   }
