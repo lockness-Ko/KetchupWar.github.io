@@ -95,7 +95,7 @@
         // Get Angle
         gotoxyz(nodesX[edges[i][0]],nodesY[edges[i][0]],nodesZ[edges[i][0]]);
         perspective(x1,y1,z1);
-        ctx.drawImage(img,x1-isize/2,(y1-isize/2)-(isize*Math.cos(angle)),isize,isize*Math.cos(angle));
+        ctx.drawImage(img,x1-isize/2,(y1-isize/2)-(isize-isize*Math.cos(angle)),isize,isize*Math.cos(angle));
       }
     }
   }
