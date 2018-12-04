@@ -39,6 +39,8 @@
   var newedge = [];
   var zterms = [];
   var avz = 0;
+  var furtherlen;
+  var furtheritem;
   
   // 3D Data
   var edges = [];
@@ -90,8 +92,8 @@
     ctx.stroke();
     ctx.clearRect(0, 0, c.width, c.height);
     for (d=0;d<edges.length;d++) {
-      var furtherlen = -999999999999999999999999999999999999999999999999;
-      var furtheritem = 0;
+      furtherlen = -999999999999999999999999999999999999999999999999;
+      furtheritem = 0;
       for (c=0;c<edges.length;c++) {
         // Average all points on shape
         var avz = 0;
