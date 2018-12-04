@@ -16,6 +16,9 @@
   // event.clientX
   // event.clientY
   
+  //physics stuff
+  var ctrlHit = false;
+  
   // Keypresses
   var keys = {};
   window.onkeyup = function(e) { keys[e.keyCode] = false; }
@@ -69,6 +72,11 @@
         gotoxyz(nodesX[edges[i][1]],nodesY[edges[i][1]],nodesZ[edges[i][1]]);
         if (z1>0) {
           perspective(x1,y1,z1);
+          //=======================
+          //Disable forward, left and right movement
+          //Basically the collision
+          ctrlHit = true;
+          //=======================
           ctx.lineTo(x1,y1);
         }
       }
@@ -140,28 +148,30 @@
     x1 = dis*Math.sin(dir + (zrot)*Math.PI/180);
     y1 = dis*Math.cos(dir + (zrot)*Math.PI/180);
   }
-
+  
   function control() {
     if (keys["38"]) {xrot+=1} // Up
     if (keys["40"]) {xrot-=1} // Down
     if (keys["37"]) {yrot+=1} // Left
     if (keys["39"]) {yrot-=1} // Right
     // Movement
-    if (keys["87"]) { // Forward
-      pz += 2*Math.cos(yrot*Math.PI/180);
-      px += -2*Math.sin(yrot*Math.PI/180);
+    if (!ctrlHit){
+      if (keys["87"]) { // Forward
+        pz += 2*Math.cos(yrot*Math.PI/180);
+        px += -2*Math.sin(yrot*Math.PI/180);
+      }
+      if (keys["65"]) { // Move Left
+        pz += -2*Math.cos((yrot-90)*(Math.PI/180));
+        px += 2*Math.sin((yrot-90)*Math.PI/180);
+      }
+      if (keys["68"]) { // Move Right
+        pz += -2*Math.cos((yrot+90)*(Math.PI/180));
+        px += 2*Math.sin((yrot+90)*Math.PI/180);
+      }
     }
-    if (keys["83"]) { // Forward
-      pz += -2*Math.cos(yrot*(Math.PI/180));
-      px += 2*Math.sin(yrot*Math.PI/180);
-    }
-    if (keys["65"]) { // Move Left
-      pz += -2*Math.cos((yrot-90)*(Math.PI/180));
-      px += 2*Math.sin((yrot-90)*Math.PI/180);
-    }
-    if (keys["68"]) { // Move Right
-      pz += -2*Math.cos((yrot+90)*(Math.PI/180));
-      px += 2*Math.sin((yrot+90)*Math.PI/180);
+    if (keys["83"]) { // Back
+        pz += -2*Math.cos(yrot*(Math.PI/180));
+        px += 2*Math.sin(yrot*Math.PI/180);
     }
     if (keys["32"]) { // Jump
       yvel = 12;
