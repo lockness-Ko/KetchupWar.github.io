@@ -76,20 +76,6 @@
   }
 
   function zorder() {
-    var newedge = [-100000];
-    for (i=0;i<edges.length;i++) {
-      zterms = [];
-      for (w=0;w<edges[i].length-1;w++)  {
-        gotoxyz(nodesX[edges[i][w]],nodesY[edges[i][w]],nodesZ[edges[i][w]]);
-        zterms.push(z1);
-      }
-      avz = 0;
-      for (c=0;c<zterms.length;c++) {
-        avz+=zterms[c];
-      }
-      avz=avz/zterms.length;
-      
-    }
   }
   
   function pointto(x,y) {
