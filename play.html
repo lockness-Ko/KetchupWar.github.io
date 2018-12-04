@@ -81,7 +81,18 @@
         var img=document.getElementById("tree");
         var isize = (200*(210/(z1/fov)))
         pointto(nodesY[edges[i][0]]+py,Math.abs((nodesY[edges[i][0]]+500)-pz));
-        ctx.drawImage(img,x1-isize/2,(y1-isize/2)+(isize-isize*Math.sin(90+Math.abs(dir))),isize,isize*Math.sin(90+Math.abs(dir)));
+        // Get Angle
+        x1 = nodesX[edges[i][0]]-px;
+        y1 = -(nodesY[edges[i][0]]-py);
+        z1 = (nodesZ[edges[i][0]]+500)-pz;
+        pointto(x1,z1); // Y rotation
+        x1 = dis*Math.sin(dir + (yrot)*Math.PI/180);
+        z1 = dis*Math.cos(dir + (yrot)*Math.PI/180);
+        pointto(y1,z1); // X Rotation
+        y1 = dis*Math.sin(dir + (xrot)*Math.PI/180);
+        z1 = dis*Math.cos(dir + (xrot)*Math.PI/180);
+        // Get Angle
+        ctx.drawImage(img,x1-isize/2,(y1-isize/2),isize,isize*Math.cos(dir));
       }
     }
   }
