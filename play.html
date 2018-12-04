@@ -99,11 +99,14 @@
     y1 = dis*Math.cos(dir + (zrot)*Math.PI/180);
   }
 
-  function control() {
-    if (keys["38"]) {xrot+=1} // Up
-    if (keys["40"]) {xrot-=1} // Down
-    if (keys["37"]) {yrot+=1} // Left
-    if (keys["39"]) {yrot-=1} // Right
+  function lookAround(speed){
+    if (keys["38"]) {xrot+=speed} // Up
+    if (keys["40"]) {xrot-=speed} // Down
+    if (keys["37"]) {yrot+=speed} // Left
+    if (keys["39"]) {yrot-=speed} // Right
+  }
+  
+  function moveAround(){
     // Movement
     if (keys["87"]) { // Forward
       pz += 2*Math.cos(yrot*Math.PI/180);
@@ -130,6 +133,11 @@
       py=0;
       yvel=0;
     }
+  }
+  
+  function control() {
+    lookAround(1);
+    moveAround();
   }
   function step() {
     render();
