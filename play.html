@@ -8,6 +8,9 @@
   c.height = window.innerHeight;
   var ctx=c.getContext("2d");
 
+  // event.clientX
+  // event.clientY
+  
   // Keypresses
   var keys = {};
   window.onkeyup = function(e) { keys[e.keyCode] = false; }
@@ -32,6 +35,8 @@
   var nodesY = [100,100,-100,-100,100,100,-100,-100,0,0];
   var nodesZ = [100,100,100,100,-100,-100,-100,-100,0,0];
   var edges = [[0,1,1],[1,2,1],[2,3,1],[3,0,1],[4,5,1],[5,6,1],[6,7,1],[7,4,1],[0,4,1],[1,5,1],[2,6,1],[3,7,1],[8,8,2],[9,9,2]];
+  var rxpos = []
+  var rypos = []
 
   function render() {
     ctx.beginPath();
@@ -44,10 +49,12 @@
         // Don't draw it if its behind the player (ADD THAT)
         ctx.beginPath();
         gotoxyz(nodesX[edges[i][0]],nodesY[edges[i][0]],nodesZ[edges[i][0]]);
+        var olz1 = z1;
         if (z1>0) {
           perspective(x1,y1,z1);
           ctx.moveTo(x1,y1);
           gotoxyz(nodesX[edges[i][1]],nodesY[edges[i][1]],nodesZ[edges[i][1]]);
+          
           if (z1>0) {
             perspective(x1,y1,z1);
             ctx.lineTo(x1,y1);
