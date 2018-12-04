@@ -81,7 +81,7 @@
         var img=document.getElementById("tree");
         var isize = (200*(210/(z1/fov)))
         pointto(nodesY[edges[i][0]]+py,Math.abs((nodesY[edges[i][0]]+500)-pz));
-        ctx.drawImage(img,x1-isize/2,(y1-isize/2)-(isize-isize*Math.cos(Math.abs(dir))),isize,isize*Math.cos(Math.abs(dir)));
+        ctx.drawImage(img,x1-isize/2,(y1-isize/2)+(isize-isize*Math.cos(Math.abs(dir))),isize,isize*Math.cos(Math.abs(dir)));
       }
     }
   }
