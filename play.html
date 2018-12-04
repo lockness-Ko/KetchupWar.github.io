@@ -91,12 +91,12 @@
     ctx.clearRect(0, 0, c.width, c.height);
     for (d=0;d<edges.length;d++) {
       var furtherlen = -999999999999999999999999999999999999999999999999;
-      var furtheritem = 1;
+      var furtheritem = 0;
       for (c=0;c<edges.length;c++) {
         // Average all points on shape
         var avz = 0;
         for (w=0;w<edges[c].length-1;w++) {
-          gotoxyz(nodesX[edges[c][0]],nodesY[edges[c][0]],nodesZ[edges[c][0]]);
+          gotoxyz(nodesX[edges[c][w]],nodesY[edges[c][w]],nodesZ[edges[c][w]]);
           avz += z1;
         }
         avz = avz/edges[c].length-1;
