@@ -95,11 +95,11 @@
       for (c=0;c<edges.length;c++) {
         // Average all points on shape
         var avz = 0;
-        for (w=0;w<edges[i].length-1;w++) {
+        for (w=0;w<edges[c].length-1;w++) {
           gotoxyz(nodesX[edges[c][0]],nodesY[edges[c][0]],nodesZ[edges[c][0]]);
           avz += z1;
         }
-        avz = avz/edges[i].length-1;
+        avz = avz/edges[c].length-1;
         if (avz>furtherlen) {
           furtherlen = avz;
           furtheritem = c;
