@@ -175,8 +175,10 @@
   }
   function step() {
     ctx.clearRect(0, 0, c.width, c.height);
-    var imgback=document.getElementById("back");
-    ctx.drawImage(imgback,0,0,c.width,c.height);
+    try {
+      var imgback=document.getElementById("back");
+      ctx.drawImage(imgback,0,0,c.width,c.height);
+    } catch(err) {alert(err)}
     drawdata();
     zorder();
     control();
