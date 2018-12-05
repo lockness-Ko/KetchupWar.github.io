@@ -22,6 +22,7 @@
   window.onkeydown = function(e) { keys[e.keyCode] = true; }
 
   // Initiate standard variables
+  var ctrlHit = true;
   var dir;
   var dis;
   var xrot = 0;
@@ -67,7 +68,7 @@
         perspective(x1,y1,z1);
         ctx.moveTo(x1,y1);
         gotoxyz(nodesX[edges[i][1]],nodesY[edges[i][1]],nodesZ[edges[i][1]]);
-        if (z1>0) {
+        if (z1>0) { ctrlhit = false;
           perspective(x1,y1,z1);
           ctx.lineTo(x1,y1);
         }
@@ -77,7 +78,7 @@
     if (edges[i][2] == 2) {
       gotoxyz(nodesX[edges[i][0]],nodesY[edges[i][0]],nodesZ[edges[i][0]]);
       perspective(x1,y1,z1);
-      if (z1>0) {
+      if (z1>0) { ctrlhit = false;
         var img=document.getElementById("tree");
         var isize = (200*(210/(z1/fov)))
         pointto(nodesY[edges[i][0]]+py,Math.abs((nodesY[edges[i][0]]+500)-pz));
@@ -137,6 +138,7 @@
   }
 
   function control() {
+    if (ctrlHit) {
     if (keys["38"]) {xrot+=1} // Up
     if (keys["40"]) {xrot-=1} // Down
     if (keys["37"]) {yrot+=1} // Left
@@ -161,6 +163,7 @@
     if (keys["32"]) { // Jump
       yvel = 12;
     }
+    }
     py+=yvel;
     yvel-=1;
     if (py < 0) {
@@ -175,6 +178,7 @@
     drawdata();
     zorder();
     control();
+    ctrlHit = true;
     window.requestAnimationFrame(step);
   }
 
