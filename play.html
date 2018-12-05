@@ -78,7 +78,7 @@
       gotoxyz(nodesX[edges[i][0]],nodesY[edges[i][0]],nodesZ[edges[i][0]]);
       perspective(x1,y1,z1);
       if (z1>0) {
-        var img=document.getElementById("back");
+        var img=document.getElementById("tree");
         var isize = (200*(210/(z1/fov)))
         pointto(nodesY[edges[i][0]]+py,Math.abs((nodesY[edges[i][0]]+500)-pz));
         // Get Angle
@@ -101,11 +101,6 @@
   }
 
   function zorder() {
-    ctx.beginPath();
-    ctx.moveTo(0,0);
-    ctx.lineTo(100,100);
-    ctx.stroke();
-    ctx.clearRect(0, 0, c.width, c.height);
     for (d=0;d<edges.length;d++) {
       furtherlen = -999999999999999999999999999999999999999999999999;
       furtheritem = d;
@@ -175,6 +170,8 @@
   }
   function step() {
     ctx.clearRect(0, 0, c.width, c.height);
+    var img=document.getElementById("tree");
+    ctx.drawImage(img,0,0,c.width,c.height)
     drawdata();
     zorder();
     control();
